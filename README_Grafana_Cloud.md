@@ -1,5 +1,6 @@
 # Grafana Cloud  
-Create Grafana Cloud Account which is valid for 15 Days 
+Create Grafana Cloud Account which is valid for 15 Days  
+
 Reference Documentation:  
 
     https://grafana.com/products/cloud/
