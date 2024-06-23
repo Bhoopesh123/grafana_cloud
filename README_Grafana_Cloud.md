@@ -37,6 +37,10 @@ Kindly replace the below one with your url
 
     https://bhoopeshsharma.grafana.net/
 
+To Search all of the time series data points grouping by job  in query  
+
+  count({__name__=~".+"}) by (job)   
+
 # 6. Import the Grafana Dashboards
 
 Import 1860 dashboard id for Node Exporter metrics  
