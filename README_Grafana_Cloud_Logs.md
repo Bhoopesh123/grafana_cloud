@@ -15,7 +15,7 @@ Install it by following Promtail.yml file commands from below documentation:
 
     https://github.com/Bhoopesh123/Grafana_onprem 
 
-# 3. Modify the prometheus configuration.
+# 3. Modify the Promtail configuration.
 
     cd /etc/
 
