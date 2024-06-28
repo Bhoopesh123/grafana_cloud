@@ -5,23 +5,18 @@ Reference Documentation:
 
     https://grafana.com/products/cloud/
 
-# 1. Install Loki on Ubuntu Monitoring Server:   
-Install it by following Loki.yml file commands from below documentation:  
-
-    https://github.com/Bhoopesh123/Grafana_onprem  
-
-# 2. Install Promtail on Client Machine  
+# 1. Install Promtail on Client Machine  
 Install it by following Promtail.yml file commands from below documentation:   
 
     https://github.com/Bhoopesh123/Grafana_onprem 
 
-# 3. Modify the Promtail configuration.
+# 2. Modify the Promtail configuration.
 
     cd /etc/
 
 Copy the contents of the "promtail-local-config.yml" configuration from this repo to your environment and change the api key and url details.
 
-# 4. Restart the Promtail agent
+# 3. Restart the Promtail agent
 
     sudo systemctl stop promtail.service
     sudo systemctl start promtail.service
@@ -31,7 +26,7 @@ Validate the service logs by below command:
 
     journalctl -u promtail.service -f
 
-# 5. Validate the logs in Grafana cloud account  
+# 4. Validate the logs in Grafana cloud account  
 
 Kindly replace the below one with your url  
 
