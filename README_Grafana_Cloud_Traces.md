@@ -19,6 +19,7 @@ Copy the contents of the "config.yml" configuration from this repo to your envir
 
 # 4. Restart the Tempo
 
+    sudo systemctl stop tempo.service
     sudo systemctl start tempo.service
     sudo systemctl is-active tempo
     sudo systemctl status tempo.service
@@ -32,7 +33,11 @@ Validate the service logs by below command:
 Kindly replace the below one with your url  
 
     git clone https://github.com/grafana/tempo.git
-    cd tempo/example/docker-compose/local
+    cd /etc/tempo/tempo/example/docker-compose/shared
+Repalce the ip with the machine ip for routing metrics and traces from the application.
+
+    cd /etc/tempo/tempo/example/docker-compose/local
+    grafana-datasources.yaml and prometheus.yaml
 
 Copy the contents of the "docker-compose.yaml" configuration from this repo to your environment at /etc/tempo and change the api key and url details.
 
