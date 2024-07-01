@@ -15,7 +15,7 @@ Install it by following below commands:
 
 # 2. Modify the Tempo configuration.
 
-Copy the contents of the "config.yml" configuration from this repo to your environment at /etc/tempo and change the api key and url details.
+Copy the contents of the "tempo_config.yml" configuration from this repo to your environment at /etc/tempo/config.yml and change the api key and url details.
 
 # 4. Restart the Tempo
 
