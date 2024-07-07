@@ -1,0 +1,32 @@
+prometheus.scrape "prometheus" {
+  targets = [{
+    __address__ = "localhost:9090",
+  }]
+  forward_to     = [prometheus.remote_write.default.receiver]
+  job_name       = "prometheus"
+  scrape_timeout = "45s"
+}
+
+prometheus.scrape "node_exporter" {
+        targets = [{
+                __address__ = "localhost:9100",
+        }]
+        forward_to = [prometheus.remote_write.default.receiver]
+        job_name   = "node_exporter"
+}
+prometheus.remote_write "default" {
+  endpoint {
+    name = "prometheus-onprem"
+    url  = "http://localhost:9090/api/v1/write"
+
+    queue_config {
+      capacity             = 2500
+      max_shards           = 200
+      max_samples_per_send = 500
+    }
+
+    metadata_config {
+      max_samples_per_send = 500
+    }
+  }
+}
