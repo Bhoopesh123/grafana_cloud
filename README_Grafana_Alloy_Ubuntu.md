@@ -5,7 +5,7 @@ Reference Documentation:
 
     https://grafana.com/docs/alloy/latest/introduction/
 
-# 1. Install Alloy on Ubuntu Monitoring Server:   
+# 1. Install Alloy on Ubuntu Monitoring Server
 Install it by following below commands:  
 
     sudo apt install gpg
@@ -16,7 +16,7 @@ Install it by following below commands:
     sudo apt-get install alloy
 
 
-# 2. Configure and Run Alloy on Ubuntu Monitoring Server:.
+# 2. Configure and Run Alloy on Ubuntu Monitoring Server
 
     sudo systemctl reload alloy
     sudo systemctl start alloy
