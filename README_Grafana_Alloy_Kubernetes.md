@@ -34,6 +34,7 @@ Install it by following below commands:
 # 5. Validate the metrics on Grafana
 
 To Search all of the time series data points grouping by job  in query  
+
   count({__name__=~".+"}) by (job)
 
 # 6. Import the Node Exporter Dashboards
