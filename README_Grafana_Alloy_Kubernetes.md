@@ -35,7 +35,7 @@ Install it by following below commands:
 
 To Search all of the time series data points grouping by job  in query  
 
-  count({__name__=~".+"}) by (job)
+    count({__name__=~".+"}) by (job)
 
 # 6. Import the Node Exporter Dashboards
 
