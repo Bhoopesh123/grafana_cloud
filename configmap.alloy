@@ -11,10 +11,6 @@ prometheus.remote_write "default" {
     name = "prometheus-onprem"
     url  = "https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push"
 
-    basic_auth {
-      username = "1646953"
-    }
-
     queue_config {
       capacity             = 2500
       max_shards           = 200
