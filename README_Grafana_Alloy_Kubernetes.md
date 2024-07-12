@@ -27,6 +27,8 @@ Install it by following below commands:
 
 # 4. Configure and Run Alloy on Minikube Cluster
 
+    Make sure to update the node_exporter service ip in alloy configuration in configmap.alloy file before creating configmap
+
     kubectl create configmap --namespace metrics alloy-config "--from-file=configmap.alloy=./configmap.alloy"
 
     helm upgrade --namespace metrics alloy grafana/alloy -f grafana_alloy.yaml
