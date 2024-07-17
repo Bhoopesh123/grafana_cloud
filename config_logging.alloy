@@ -1,0 +1,47 @@
+// Let's learn about relabeling and send logs to Loki!
+
+local.file_match "tmplogs" {
+    path_targets = [{"__path__" = "/tmp/alloy-logs/*.log"}]
+}
+
+loki.source.file "local_files" {
+    targets    = local.file_match.tmplogs.targets
+    forward_to = [loki.process.add_new_label.receiver]
+}
+
+loki.process "add_new_label" {
+    // Extract the value of "level" from the log line and add it to the extracted map as "extracted_level"
+    // You could also use "level" = "", which would extract the value of "level" and add it to the extracted map as "level"
+    // but to make it explicit for this example, we will use a different name.
+    //
+    // The extracted map will be covered in more detail in the next section.
+    stage.logfmt {
+        mapping = {
+            "extracted_level" = "level",
+        }
+    }
+
+    // Add the value of "extracted_level" from the extracted map as a "level" label
+    stage.labels {
+        values = {
+            "level" = "extracted_level",
+        }
+    }
+
+    forward_to = [loki.relabel.add_static_label.receiver]
+}
+
+loki.relabel "add_static_label" {
+    forward_to = [loki.write.local_loki.receiver]
+
+    rule {
+        target_label = "os"
+        replacement  = constants.os
+    }
+}
+
+loki.write "local_loki" {
+    endpoint {
+        url = "http://localhost:3100/loki/api/v1/push"
+    }
+}
