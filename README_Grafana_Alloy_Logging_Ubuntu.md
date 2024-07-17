@@ -30,7 +30,14 @@ Install it by following below commands:
 
     https://github.com/Bhoopesh123/Grafana_onprem/blob/main/README.md
 
-# 4. Modify Logging configuration of Grafana Alloy
+# 4. Creating some files for Logging Prespective
+
+    echo 'level=info msg="INFO: This is an info level log!"' > /tmp/alloy-logs/log.log
+    echo 'level=warn msg="WARN: This is a warn level log!"' >> /tmp/alloy-logs/log.log
+    echo 'level=debug msg="DEBUG: This is a debug level log!"' >> /tmp/alloy-logs/log.log
+
+
+# 5. Modify Logging configuration of Grafana Alloy
 
 Copy the contents of the "config_logging.alloy" configuration from this repo to your environment(/etc/alloy) and restart alloy agent
 
