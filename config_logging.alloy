@@ -18,6 +18,7 @@ loki.process "add_new_label" {
     stage.logfmt {
         mapping = {
             "extracted_level" = "level",
+            "extracted_msg" = "msg",
         }
     }
 
@@ -25,6 +26,7 @@ loki.process "add_new_label" {
     stage.labels {
         values = {
             "level" = "extracted_level",
+            "msg" = "extracted_msg",
         }
     }
 
