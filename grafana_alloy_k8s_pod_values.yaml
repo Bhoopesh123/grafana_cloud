@@ -1,0 +1,5 @@
+alloy:
+  configMap:
+    create: false
+    name: alloy-config
+    key: config_logging_Pods_k8s.alloy
