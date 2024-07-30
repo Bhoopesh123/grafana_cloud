@@ -1,0 +1,56 @@
+
+discovery.kubernetes "pods" {
+  role = "pod"
+
+  namespaces {
+    own_namespace = false
+    names = ["metrics"]
+  }
+
+  selectors {
+    role  = "pod"
+  }
+}
+
+prometheus.scrape "pods" {
+  targets    = discovery.kubernetes.pods.targets
+  forward_to = [prometheus.remote_write.default.receiver]
+}
+
+prometheus.scrape "node_exporter" {
+        targets = [{
+                __address__ = "10.43.120.34:9100",
+        }]
+        forward_to = [prometheus.remote_write.default.receiver]
+        job_name   = "node_exporter"
+}
+
+prometheus.scrape "alloy_metrics" {
+        targets = [{
+                __address__ = "10.43.53.251:12345",
+        }]
+        forward_to = [prometheus.remote_write.default.receiver]
+        job_name   = "alloy_metrics"
+}
+
+prometheus.remote_write "default" {
+  endpoint {
+    name = "prometheus-onprem"
+    url  = "https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push"
+
+    basic_auth {
+      username = "1646953"
+      password = "xxx"
+    }
+
+    queue_config {
+      capacity             = 2500
+      max_shards           = 200
+      max_samples_per_send = 500
+    }
+
+    metadata_config {
+      max_samples_per_send = 500
+    }
+  }
+}
