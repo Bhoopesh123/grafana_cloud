@@ -1,1 +1,1 @@
-# grafana cloud use cases
+# Grafana Cloud and Grafana Alloy Monitoring 
