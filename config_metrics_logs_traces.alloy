@@ -1,0 +1,129 @@
+prometheus.scrape "prometheus" {
+  targets = [{
+    __address__ = "localhost:9090",
+  }]
+  forward_to     = [prometheus.remote_write.default.receiver]
+  job_name       = "prometheus"
+  scrape_timeout = "45s"
+}
+
+prometheus.scrape "petclinic_metrics" {
+  targets = [{
+    __address__ = "http://localhost:8080",
+  }]
+  forward_to     = [prometheus.remote_write.default.receiver]
+  metrics_path: "/actuator/prometheus"
+  job_name       = "petclinic_metrics"
+  scrape_timeout = "45s"
+}
+
+prometheus.scrape "node_exporter" {
+        targets = [{
+                __address__ = "localhost:9100",
+        }]
+        forward_to = [prometheus.remote_write.default.receiver]
+        job_name   = "node_exporter"
+}
+
+prometheus.remote_write "default" {
+  endpoint {
+    name = "prometheus-onprem"
+    url  = "https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push"
+
+    basic_auth {
+      username = "1646953"
+      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaG0td3JpdGUtbWV0cmljczMiLCJrIjoiOTg4MVlPN1RpMzJ4dUtkbEpqYTZ1OHo4IiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0="
+    }
+
+    queue_config {
+      capacity             = 2500
+      max_shards           = 200
+      max_samples_per_send = 500
+    }
+
+    metadata_config {
+      max_samples_per_send = 500
+    }
+  }
+}
+
+
+// Let's learn about relabeling and send logs to Loki!
+
+local.file_match "tmplogs" {
+    path_targets = [{"__path__" = "/tmp/alloy-logs/*.log"}]
+}
+
+loki.source.file "local_files" {
+    targets    = local.file_match.tmplogs.targets
+    forward_to = [loki.process.add_new_label.receiver]
+}
+
+loki.process "add_new_label" {
+    // Extract the value of "level" from the log line and add it to the extracted map as "extracted_level"
+    // You could also use "level" = "", which would extract the value of "level" and add it to the extracted map as "level"
+    // but to make it explicit for this example, we will use a different name.
+    //
+    // The extracted map will be covered in more detail in the next section.
+    stage.logfmt {
+        mapping = {
+            "extracted_level" = "level",
+            "extracted_msg" = "msg",
+        }
+    }
+
+    // Add the value of "extracted_level" from the extracted map as a "level" label
+    stage.labels {
+        values = {
+            "level" = "extracted_level",
+            "msg" = "extracted_msg",
+        }
+    }
+
+    forward_to = [loki.relabel.add_static_label.receiver]
+}
+
+loki.relabel "add_static_label" {
+    forward_to = [loki.write.grafanacloud.receiver]
+
+    rule {
+        target_label = "os"
+        replacement  = constants.os
+    }
+}
+
+loki.write "grafanacloud" {
+  endpoint {
+    url = "https://logs-prod-006.grafana.net/loki/api/v1/push"
+
+    basic_auth {
+      username = "923400"
+      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaGwtd3JpdGUtbG9nczQiLCJrIjoiNXRXNHhDdjI4eEU5NjVWaFl4ZkgzOW8wIiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0="
+    }
+  }
+}
+
+
+otelcol.receiver.otlp "otlp_receiver" {
+  grpc {
+    endpoint = "0.0.0.0:4317"
+  }
+  http {
+    endpoint = "0.0.0.0:4318"
+  }
+
+  output {
+    traces = [otelcol.exporter.otlp.grafanacloud.input,]
+  }
+}
+otelcol.exporter.otlp "grafanacloud" {
+  client {
+    endpoint = "tempo-prod-04-prod-us-east-0.grafana.net:443"
+    auth = otelcol.auth.basic.grafanacloud.handler
+  }
+}
+
+otelcol.auth.basic "grafanacloud" {
+  username = "917716"
+  password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaGwtd3JpdGUtbG9ncy1zdGFuZGFsb25lMiIsImsiOiJDMXI1MmNvQTQ5elQxTjZyN0UzM1hYdXoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ=="
+}
