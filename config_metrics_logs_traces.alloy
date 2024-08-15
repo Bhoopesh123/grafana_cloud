@@ -32,7 +32,7 @@ prometheus.remote_write "default" {
 
     basic_auth {
       username = "1646953"
-      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaG0td3JpdGUtbWV0cmljczMiLCJrIjoiOTg4MVlPN1RpMzJ4dUtkbEpqYTZ1OHo4IiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0="
+      password = "xx"
     }
 
     queue_config {
@@ -98,7 +98,7 @@ loki.write "grafanacloud" {
 
     basic_auth {
       username = "923400"
-      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaGwtd3JpdGUtbG9nczQiLCJrIjoiNXRXNHhDdjI4eEU5NjVWaFl4ZkgzOW8wIiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0="
+      password = "xx"
     }
   }
 }
@@ -125,5 +125,5 @@ otelcol.exporter.otlp "grafanacloud" {
 
 otelcol.auth.basic "grafanacloud" {
   username = "917716"
-  password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaGwtd3JpdGUtbG9ncy1zdGFuZGFsb25lMiIsImsiOiJDMXI1MmNvQTQ5elQxTjZyN0UzM1hYdXoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ=="
+  password = "xx"
 }
