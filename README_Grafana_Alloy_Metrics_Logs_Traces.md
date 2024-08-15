@@ -94,7 +94,6 @@ Set OTEL Agent Environment Variables
 
 Start the Petclinic Application
 
-    java -jar target/*.jar 
     java -javaagent:./opentelemetry-javaagent.jar -Dotel.service.name=petclinic -jar target/*.jar
 
 Check the application on port like as below:  
