@@ -12,7 +12,7 @@ prometheus.scrape "petclinic_metrics" {
     __address__ = "http://localhost:8080",
   }]
   forward_to     = [prometheus.remote_write.default.receiver]
-  metrics_path: "/actuator/prometheus"
+  metrics_path   = "/actuator/prometheus"
   job_name       = "petclinic_metrics"
   scrape_timeout = "45s"
 }
