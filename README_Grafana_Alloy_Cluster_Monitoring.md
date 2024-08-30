@@ -13,6 +13,9 @@ https://github.com/Bhoopesh123/k3d-minikube/blob/main/README.md
 # 2. Install Grafana-K8S Helm Chart on Minikube Cluster 
 
 Install it by following below commands:  
+Reference Documentation:  
+
+    https://github.com/grafana/k8s-monitoring-helm/blob/main/charts/k8s-monitoring/README.md
 
     helm repo add grafana https://grafana.github.io/helm-charts
     helm repo update
