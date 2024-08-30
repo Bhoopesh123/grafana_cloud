@@ -1,0 +1,14 @@
+cluster:
+  name: bhoopesh_minikube
+
+externalServices:
+  prometheus:
+    host: https://prometheus-prod-13-prod-us-east-0.grafana.net
+    basicAuth:
+      username: "1646953"
+      password: "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaG0td3JpdGUtbWV0cmljczMiLCJrIjoiOTg4MVlPN1RpMzJ4dUtkbEpqYTZ1OHo4IiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0="
+  loki:
+    host: https://logs-prod-006.grafana.net
+    basicAuth:
+      username: "923400"
+      password: "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaGwtd3JpdGUtbG9nczQiLCJrIjoiNXRXNHhDdjI4eEU5NjVWaFl4ZkgzOW8wIiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0="
