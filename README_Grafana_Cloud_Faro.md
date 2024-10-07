@@ -6,9 +6,8 @@ Reference Documentation:
     https://grafana.com/products/cloud/
 
 # 1. Install Web Based Application on Ubuntu Server.   
-Install it by following documentation.
-
-    https://github.com/curioustushar/react-sample-projects 
+Install it by following documentation.  
+https://github.com/curioustushar/react-sample-projects 
 
     git clone https://github.com/curioustushar/react-sample-projects 
     sudo apt-get update
@@ -20,7 +19,7 @@ Install it by following documentation.
     npm install
     npm start
 
-# 2. Configure the Application for Grafana Cloud.  
+# 2. Configure the Application for sending Web Vitals to Grafana Cloud.  
 Add the below snippet in index.js under /src folder
 
     import { initializeFaro } from '@grafana/faro-web-sdk';
@@ -34,7 +33,8 @@ Add the below snippet in index.js under /src folder
     },
     });   
 
-Restart the application
+Restart the application  
+
     cd demo_cart
     npm start
 
@@ -65,6 +65,10 @@ Modify the below snippet in index.js under /src folder
         new TracingInstrumentation(),
         ],
     });
+Restart the application  
+
+    cd demo_cart
+    npm start  
 
 # 4. Verify the Web Vitals and RUM on Grafana Cloud
 
