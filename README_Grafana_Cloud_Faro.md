@@ -25,7 +25,7 @@ Add the below snippet in index.js under /src folder
     import { initializeFaro } from '@grafana/faro-web-sdk';
 
     const faro = initializeFaro({
-    url: 'https://faro-collector-prod-us-east-0.grafana.net/collect/88fdcfc8e05a5c5534373b2ca505837e',
+    url: 'https://faro-collector-prod-us-east-0.grafana.net/collect/9239677097af24f529cd06644f77560a',
     apiKey: 'secret',
     app: {
         name: 'frontend',
@@ -50,7 +50,7 @@ Modify the below snippet in index.js under /src folder
     import { TracingInstrumentation } from '@grafana/faro-web-tracing';
 
     initializeFaro({
-        url: 'https://faro-collector-prod-us-east-0.grafana.net/collect/88fdcfc8e05a5c5534373b2ca505837e',
+        url: 'https://faro-collector-prod-us-east-0.grafana.net/collect/9239677097af24f529cd06644f77560a',
         app: {
         name: 'frontend',
         version: '1.0.0',
@@ -70,5 +70,8 @@ Restart the application
     cd demo_cart
     npm start  
 
-# 4. Verify the Web Vitals and RUM on Grafana Cloud
+# 4. Verify the Web Vitals and RUM on Grafana Cloud  
 
+Import the below dashboard in your Grafana for better visualization  
+
+    https://grafana.com/grafana/dashboards/17766-frontend-monitoring/
