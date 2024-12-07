@@ -1,0 +1,77 @@
+
+
+otelcol.receiver.otlp "otlp_receiver" {
+  grpc {
+    endpoint = "0.0.0.0:4317"
+  }
+  http {
+    endpoint = "0.0.0.0:4318"
+  }
+
+  output {
+    metrics = [otelcol.exporter.prometheus.default.input]
+    logs = [otelcol.exporter.loki.default.input]
+    traces = [otelcol.exporter.otlp.grafanacloud3.input]
+  }
+}
+
+otelcol.exporter.prometheus "default" {
+  forward_to = [prometheus.remote_write.default.receiver]
+}
+
+otelcol.exporter.loki "default" {
+  forward_to = [loki.write.grafanacloud.receiver]
+}
+
+
+loki.write "grafanacloud" {
+  endpoint {
+    url = "https://logs-prod-006.grafana.net/loki/api/v1/push"
+
+    basic_auth {
+      username = "923400"
+      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaGwtd3JpdGUtbG9nc193cml0ZSIsImsiOiI1REsyNFh4SzF0dzU0OEZmRWlSNDk1SFgiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ=="
+    }
+  }
+}
+
+otelcol.exporter.otlp "grafanacloud3" {
+  client {
+    endpoint = "tempo-prod-04-prod-us-east-0.grafana.net:443"
+    auth = otelcol.auth.basic.grafanacloud3.handler
+  }
+}
+otelcol.auth.basic "grafanacloud3" {
+  username = "917716"
+  password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaHQtd3JpdGUtdGVtcG9fdHJhY2luZyIsImsiOiIyM2M5YXVNMTYyZzA1Qkw3V3BKWDFzSGoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ=="
+}
+
+prometheus.scrape "node_exporter" {
+        targets = [{
+                __address__ = "10.43.120.34:9100",
+        }]
+        forward_to = [prometheus.remote_write.default.receiver]
+        job_name   = "node_exporter"
+}
+
+prometheus.remote_write "default" {
+  endpoint {
+    name = "prometheus-oncloud"
+    url  = "https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push"
+
+    basic_auth {
+      username = "1646953"
+      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaG0td3JpdGUtbWV0cmljczIxIiwiayI6IjUwNTI4b1lpdDZBMDI4d05PZUZrMmdyTCIsIm0iOnsiciI6InByb2QtdXMtZWFzdC0wIn19"
+    }
+
+    queue_config {
+      capacity             = 2500
+      max_shards           = 200
+      max_samples_per_send = 500
+    }
+
+    metadata_config {
+      max_samples_per_send = 500
+    }
+  }
+}

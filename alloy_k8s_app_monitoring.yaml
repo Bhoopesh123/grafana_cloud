@@ -1,0 +1,14 @@
+alloy:
+  configMap:
+    create: false
+    name: alloy-config
+    key: config_k8s_metrics_logs_tracing.alloy
+  extraPorts:
+  - name: "otelgrpc"
+    port: 4317
+    targetPort: 4317
+    protocol: "TCP"
+  - name: "otelhttp"
+    port: 4318
+    targetPort: 4318
+    protocol: "TCP"
