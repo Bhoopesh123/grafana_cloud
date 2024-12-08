@@ -30,7 +30,7 @@ loki.write "grafanacloud" {
 
     basic_auth {
       username = "923400"
-      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaGwtd3JpdGUtbG9nc193cml0ZSIsImsiOiI1REsyNFh4SzF0dzU0OEZmRWlSNDk1SFgiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ=="
+      password = "xx=="
     }
   }
 }
@@ -43,12 +43,12 @@ otelcol.exporter.otlp "grafanacloud3" {
 }
 otelcol.auth.basic "grafanacloud3" {
   username = "917716"
-  password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaHQtd3JpdGUtdGVtcG9fdHJhY2luZyIsImsiOiIyM2M5YXVNMTYyZzA1Qkw3V3BKWDFzSGoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ=="
+  password = "xx=="
 }
 
 prometheus.scrape "node_exporter" {
         targets = [{
-                __address__ = "10.43.120.34:9100",
+                __address__ = "10.43.6.165:9100",
         }]
         forward_to = [prometheus.remote_write.default.receiver]
         job_name   = "node_exporter"
@@ -61,7 +61,7 @@ prometheus.remote_write "default" {
 
     basic_auth {
       username = "1646953"
-      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaG0td3JpdGUtbWV0cmljczIxIiwiayI6IjUwNTI4b1lpdDZBMDI4d05PZUZrMmdyTCIsIm0iOnsiciI6InByb2QtdXMtZWFzdC0wIn19"
+      password = "xx"
     }
 
     queue_config {

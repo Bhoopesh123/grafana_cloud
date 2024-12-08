@@ -40,7 +40,7 @@ Make sure to update the node_exporter service ip in alloy configuration in confi
     helm  upgrade --install --namespace opentelemetry-demo alloy grafana/alloy -f alloy_k8s_app_monitoring.yaml
 
 # 6. Validate the metrics on Grafana
-
+SS
 To Search all of the time series data points grouping by job  in query  
 
     count({__name__=~".+"}) by (job)
