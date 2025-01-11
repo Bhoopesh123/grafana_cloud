@@ -1,7 +1,7 @@
 
 prometheus.scrape "blackbox_scraper1" {
   targets = [
-    {"__address__" = "10.43.199.158:9115", "instance" = "Grafana_URL"},
+    {"__address__" = "10.43.79.53:9115", "instance" = "Grafana_URL"},
   ]
   forward_to = [prometheus.remote_write.default.receiver]
   scrape_interval = "10s"
@@ -11,7 +11,7 @@ prometheus.scrape "blackbox_scraper1" {
 
 prometheus.scrape "blackbox_scraper2" {
   targets = [
-    {"__address__" = "10.43.199.158:9115", "instance" = "Farzi_URL"},
+    {"__address__" = "10.43.79.53:9115", "instance" = "Farzi_URL"},
   ]
   forward_to = [prometheus.remote_write.default.receiver]
   scrape_interval = "10s"
@@ -21,11 +21,11 @@ prometheus.scrape "blackbox_scraper2" {
 
 prometheus.scrape "blackbox_scraper3" {
   targets = [
-    {"__address__" = "10.43.199.158:9115", "instance" = "Service_URL"},
+    {"__address__" = "10.43.79.53:9115", "instance" = "Service_URL"},
   ]
   forward_to = [prometheus.remote_write.default.receiver]
   scrape_interval = "10s"
-  params          = { "target" = ["10.43.252.241:12345"], "module" = ["http_2xx"] }
+  params          = { "target" = ["10.43.120.97:12345"], "module" = ["http_2xx"] }
   metrics_path    = "/probe"
 }
 
@@ -38,7 +38,7 @@ prometheus.remote_write "default" {
 
     basic_auth {
       username = "1646953"
-      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaG0td3JpdGUtbWV0cmljczIxIiwiayI6IjUwNTI4b1lpdDZBMDI4d05PZUZrMmdyTCIsIm0iOnsiciI6InByb2QtdXMtZWFzdC0wIn19"
+      password = "xx"
     }
 
     queue_config {
