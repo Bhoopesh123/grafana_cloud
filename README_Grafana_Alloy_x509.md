@@ -11,7 +11,7 @@ Get notified before they expire:
 # 1. Install X509 Exporter  
 
     helm repo add enix https://charts.enix.io
-    helm upgrade --install x509-certificate-exporter enix/x509-certificate-exporter --values x509-certificate-exporter.values.yaml
+    helm upgrade --install x509-certificate-exporter enix/x509-certificate-exporter
 
 # 2. Install Alloy  
 
