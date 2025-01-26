@@ -101,3 +101,8 @@ Please refer the below page to install Prometheus on Cluster:
 To Search all of the time series data points grouping by job  in query  
 
     count({__name__=~".+"}) by (job)
+
+# 7. Add Beyla Dashboard
+
+    Add the below dashboard id 19923
+
