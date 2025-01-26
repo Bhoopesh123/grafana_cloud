@@ -98,7 +98,6 @@ Please refer the below page to install Prometheus on Cluster:
     kubectl apply -f .
 
 # 6. Validate the metrics on Grafana
-SS
 To Search all of the time series data points grouping by job  in query  
 
     count({__name__=~".+"}) by (job)
