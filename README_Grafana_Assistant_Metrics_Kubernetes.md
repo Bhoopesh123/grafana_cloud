@@ -33,7 +33,6 @@ Make sure to update the node_exporter service ip in alloy configuration in confi
 
     helm upgrade --install --namespace metrics alloy grafana/alloy -f grafana_alloy.yaml
 
-    helm upgrade --install --namespace metrics grafana-k8s-monitoring grafana/k8s-monitoring --values cluster_values.yaml
 
 # 5. Validate the metrics on Grafana
 
