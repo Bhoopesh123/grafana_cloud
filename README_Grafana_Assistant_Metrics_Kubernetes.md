@@ -31,7 +31,9 @@ Make sure to update the node_exporter service ip in alloy configuration in confi
 
     kubectl create configmap --namespace metrics alloy-config "--from-file=configmap.alloy=./configmap.alloy"
 
-    helm upgrade --namespace metrics alloy grafana/alloy -f grafana_alloy.yaml
+    helm upgrade --install --namespace metrics alloy grafana/alloy -f grafana_alloy.yaml
+
+    helm upgrade --install --namespace metrics grafana-k8s-monitoring grafana/k8s-monitoring --values cluster_values.yaml
 
 # 5. Validate the metrics on Grafana
 
@@ -44,3 +46,17 @@ To Search all of the time series data points grouping by job  in query
 Import 1860 dashboard id for Node Exporter metrics  
 
     https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+
+# 7. Prompts that needs to be given to Grafana Assistant
+
+    Please create a dashboard for infrastructure monitoring of cluster. 
+
+    Why it is showing No Data, I have node exporter already running. 
+     
+    list down users in this grafana. 
+
+    list down datasources in this Grafana. 
+
+    Can you pls optimize my Alloy config to keep only the relevant metrics. 
+
+    Paste the Alloy Config 
