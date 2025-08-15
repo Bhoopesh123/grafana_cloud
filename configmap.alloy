@@ -1,7 +1,7 @@
 
 prometheus.scrape "node_exporter" {
         targets = [{
-                __address__ = "10.43.40.160:9100",
+                __address__ = "10.43.209.228:9100",
         }]
         forward_to = [prometheus.remote_write.default.receiver]
         job_name   = "node_exporter"
@@ -13,7 +13,7 @@ prometheus.remote_write "default" {
 
     basic_auth {
       username = "1646953"
-      password = "xxx"
+      password = "glc_eyJvIjoiMTE1NjExOCIsIm4iOiJzdGFjay05NjU2MjAtaG0td3JpdGUtbWV0cmljczIxIiwiayI6IjUwNTI4b1lpdDZBMDI4d05PZUZrMmdyTCIsIm0iOnsiciI6InByb2QtdXMtZWFzdC0wIn19"
     }
 
     queue_config {

@@ -6,7 +6,7 @@ metadata:
     app: single-app-single-collector
   namespace: metrics
 data:
-  OTEL_SERVICE_NAME: "single-app-single-collector-instrumented-app"
+  OTEL_SERVICE_NAME: "single-app-single-instru-app"
   OTEL_TRACES_EXPORTER: "console,otlp"
   OTEL_METRICS_EXPORTER: "console,otlp"
   OTEL_LOGS_EXPORTER: "console,otlp"
